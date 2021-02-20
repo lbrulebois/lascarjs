@@ -1,0 +1,30 @@
+{
+  "name": "lascarjs",
+  "version": "0.3.0-21feb2014",
+  "description": "Basée sur la librairie Leaflet, lascarjs a pour objectifs de simplifier la génération de vos cartes javascript, de vous apporter de nouveaux composants compatibles et des exemples d'implémentations. Le tout est distribué sous licence libre CeCILL pour vous permettre d'en profiter pleinement !",
+  "main": "dist/lascar.js",
+  "scripts": {
+    "clean": "rm -f ./dist/lascar.*",
+    "browserify": "browserify ./src/Lascar.js -p esmify -o ./dist/lascar.src.js",
+    "uglifyjs": "uglifyjs ./dist/lascar.src.js -c --ie8 -o ./dist/lascar.js",
+    "uglifycss": "uglifycss ./src/lascar.css > ./dist/lascar.min.css",
+    "copy": "cp ./dist/lascar.js ./www/assets/js/lascar.js & cp ./dist/lascar.min.css ./www/assets/css/lascar.min.css",
+    "build": "npm run clean && npm run browserify && npm run uglifyjs && npm run uglifycss && npm run copy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lbrulebois/lascarjs.git"
+  },
+  "author": "loic.brulebois@outlook.com",
+  "license": "CECILL-2.1",
+  "bugs": {
+    "url": "https://github.com/lbrulebois/lascarjs/issues"
+  },
+  "homepage": "https://github.com/lbrulebois/lascarjs#readme",
+  "dependencies": {
+    "browser-resolve": "^2.0.0",
+    "esmify": "^2.1.1",
+    "uglify-js": "^3.12.8",
+    "uglifycss": "0.0.29"
+  }
+}
