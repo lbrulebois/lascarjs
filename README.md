@@ -9,4 +9,5 @@ Le répertoire GitHub est structuré ainsi :
 * `src` : sources de la librairie **lascarjs**
 * `dist` : livrables compilés de la librairie
 * `www` : sources du site web associé
+* `docker` : ressources Docker permettant de démarrer le site web - consultez le `docker-compose.yml` associé
 

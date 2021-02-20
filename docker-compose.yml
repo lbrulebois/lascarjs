@@ -1,0 +1,22 @@
+# docker-compose.yml
+# Projet  : lascarjs
+# Version : 0.3.0
+# -----
+version: "3.8"
+
+# Liste des services
+services:
+  # Front de l'application web
+  front-web:
+    container_name: front-web
+    build: 
+      context: ./docker/build/
+      dockerfile: /home/lbrulebois/Documents/projets/lascarjs/docker/Dockerfile
+    ports:
+      - "80:80"
+    environment:
+      TZ: Europe/Paris
+    volumes:
+      - ~/Documents/projets/lascarjs/www:/var/www/html
+      - ./docker/conf:/etc/apache2/sites-enabled
+      - ./docker/logs:/var/log/apache2
