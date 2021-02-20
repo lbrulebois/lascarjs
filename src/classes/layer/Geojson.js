@@ -1,4 +1,6 @@
 import { Request } from '../control/Request';
+import jQuery from 'jquery';
+import L from 'leaflet';
 
 export var Geojson = L.GeoJSON.extend({
 
@@ -42,11 +44,11 @@ export var Geojson = L.GeoJSON.extend({
         // collecter les données et intégrer celles-ci dans
         // le layer. Pour ce faire, on supprime l'ancienne
         // référence de traitement des événements associés au requêteur ...
-        if(this._request._events && "sending" in this._request._events && (pos = $.inArray(this.options.funcs.sending, this._request._events["sending"])) != -1) 
+        if(this._request._events && "sending" in this._request._events && (pos = jQuery.inArray(this.options.funcs.sending, this._request._events["sending"])) != -1) 
             this._request._events["sending"].splice(pos, 1);
-        if(this._request._events && "fail" in this._request._events && (pos = $.inArray(this.options.funcs.fail, this._request._events["fail"])) != -1) 
+        if(this._request._events && "fail" in this._request._events && (pos = jQuery.inArray(this.options.funcs.fail, this._request._events["fail"])) != -1) 
             this._request._events["fail"].splice(pos, 1);
-        if(this._request._events && "success" in this._request._events && (pos = $.inArray(this.options.funcs.success, this._request._events["success"])) != -1) 
+        if(this._request._events && "success" in this._request._events && (pos = jQuery.inArray(this.options.funcs.success, this._request._events["success"])) != -1) 
             this._request._events["success"].splice(pos, 1);
         // On regénère les fonctions associées pour récupérer 
         // les données potentielles et les exploiter ...

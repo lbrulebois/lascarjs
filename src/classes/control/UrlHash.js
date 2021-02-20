@@ -1,4 +1,6 @@
 import { strIsNullOrEmpty } from "../../utils/String";
+import jQuery from 'jquery';
+import L from 'leaflet';
 
 export var UrlHash = L.Class.extend({
 

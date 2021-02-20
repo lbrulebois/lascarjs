@@ -1,3 +1,6 @@
+import jQuery from 'jquery';
+import L from 'leaflet';
+
 // On vérifie que la librairie JQuery est
 // initialisée sans quoi on retourne une erreur !
 if (typeof jQuery == "undefined")

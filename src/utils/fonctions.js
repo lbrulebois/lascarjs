@@ -1,3 +1,4 @@
+import jQuery from 'jquery';
 import { strIsNullOrEmpty } from './String';
 
 /* Méthode permettant de vérifier qu'un identifiant

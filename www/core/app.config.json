@@ -1,4 +1,17 @@
 {
-    "title": "lascarjs",
-    "version": "0.3.0"
+    "context": {
+        "title": "lascarjs",
+        "version": "0.3.0"
+    },
+    "srv": {
+        "viewer": {
+            "html": {
+                "defaultPage": "home",
+                "container": "core/pages/"
+            },
+            "error": {
+                "container": "core/pages/error/"
+            }
+        }
+    }
 }

@@ -1,5 +1,10 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+(function (global){(function (){
 "use strict";
+
+var _jquery = _interopRequireDefault((typeof window !== "undefined" ? window['jQuery'] : typeof global !== "undefined" ? global['jQuery'] : null));
+
+var _leaflet = _interopRequireDefault((typeof window !== "undefined" ? window['L'] : typeof global !== "undefined" ? global['L'] : null));
 
 var utils = _interopRequireWildcard(require("./utils/index"));
 
@@ -13,12 +18,14 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 // On vérifie que la librairie JQuery est
 // initialisée sans quoi on retourne une erreur !
-if (typeof jQuery == "undefined") throw new Error("La librairie jQuery requise est absente."); // On vérifie que la librairie Leaflet est
+if (typeof _jquery.default == "undefined") throw new Error("La librairie jQuery requise est absente."); // On vérifie que la librairie Leaflet est
 // initialisée sans quoi on retourne une erreur !
 
-if (typeof L == "undefined") throw new Error("La librairie Leaflet requise est absente."); // Import des fonctions du module "utils"
+if (typeof _leaflet.default == "undefined") throw new Error("La librairie Leaflet requise est absente."); // Import des fonctions du module "utils"
 
 // ----- Génération de la librairie -----
 var oldLascar = window.Lascar || null;
@@ -33,7 +40,9 @@ var Lascar = {
 };
 window.Lascar = Lascar;
 
+}).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./classes/control/index":5,"./classes/layer/index":7,"./classes/map/index":9,"./utils/index":12}],2:[function(require,module,exports){
+(function (global){(function (){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41,11 +50,19 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.createNotifier = createNotifier;
 exports.Notifier = void 0;
-var baseOptions = L.Control.prototype.options;
-var Notifier = L.Control.extend({
+
+var _jquery = _interopRequireDefault((typeof window !== "undefined" ? window['jQuery'] : typeof global !== "undefined" ? global['jQuery'] : null));
+
+var _leaflet = _interopRequireDefault((typeof window !== "undefined" ? window['L'] : typeof global !== "undefined" ? global['L'] : null));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var baseOptions = _leaflet.default.Control.prototype.options;
+
+var Notifier = _leaflet.default.Control.extend({
   // On définit ici les options par défaut permettant
   // de générer le contrôle.
-  options: jQuery.extend(baseOptions, {
+  options: _jquery.default.extend(baseOptions, {
     position: "topleft",
     // Position du composant
     maxMessages: 5,
@@ -55,7 +72,7 @@ var Notifier = L.Control.extend({
       // Message par défaut
       showIcon: true,
       // Booléen permettant d'afficher l'icône
-      icon: $("<span>", {
+      icon: (0, _jquery.default)("<span>", {
         // Icône à intégrer par défaut
         class: "alert",
         html: " ! ",
@@ -80,13 +97,13 @@ var Notifier = L.Control.extend({
     var _this = this,
         // Autrement, on génère le composant et on l'attache 
     // à la carte ...
-    $container = jQuery("<div>", {
+    $container = (0, _jquery.default)("<div>", {
       class: "leaflet-control lascar-notifier"
     }); // on ajoute le bouton permettant de masquer le
     // composant lorsque l'utilisateur le souhaite ...
 
 
-    jQuery("<a>", {
+    (0, _jquery.default)("<a>", {
       href: "#",
       html: "&times;",
       class: "lascar-notifier-close",
@@ -107,7 +124,7 @@ var Notifier = L.Control.extend({
   // et intégrer un nouveau message ...
   show: function (data) {
     function integrateMessage(message) {
-      var $container = $(this._container);
+      var $container = (0, _jquery.default)(this._container);
       $container.parent().addClass("lascar-notifier-container"); // S'il y a plus de messages que permis, on supprime
       // le plus ancien pour permettre l'intégration du
       // nouveau message de notification.
@@ -125,11 +142,11 @@ var Notifier = L.Control.extend({
       var $ctMessage = $("<div>", {
         class: "message"
       });
-      $("<span>", {
+      (0, _jquery.default)("<span>", {
         class: "notifier-icon",
-        html: $(message.icon).clone()
+        html: (0, _jquery.default)(message.icon).clone()
       }).appendTo($ctMessage);
-      $("<span>", {
+      (0, _jquery.default)("<span>", {
         class: "notifier-msg",
         html: message.message
       }).appendTo($ctMessage);
@@ -140,13 +157,13 @@ var Notifier = L.Control.extend({
     // s'agît d'un message à intégrer ...
 
     if (typeof data == "string") {
-      integrateMessage.call(this, jQuery.extend({}, this.options.defaultMsg, {
+      integrateMessage.call(this, _jquery.default.extend({}, this.options.defaultMsg, {
         message: data
       }));
     } // Et si les informations sont un objet, il s'agît d'un
     // message personnalisé à intégrer ...
     else if (typeof data == "object" && data != null && typeof data.message == "string") {
-        integrateMessage.call(this, jQuery.extend({}, this.options.defaultMsg, data));
+        integrateMessage.call(this, _jquery.default.extend({}, this.options.defaultMsg, data));
       } // S'il n'y a aucune donnée de définie, on intègre
       // le message par défaut ...
       else {
@@ -154,13 +171,13 @@ var Notifier = L.Control.extend({
         } // On affiche le composant ...
 
 
-    $(this._container).show();
+    (0, _jquery.default)(this._container).show();
     return this;
   },
   // Méthode permettant de masquer le composant
   // et purger les messages par la même occasion ...
   hide: function () {
-    var $container = $(this._container);
+    var $container = (0, _jquery.default)(this._container);
     $container.parent().removeClass("lascar-notifier-container");
     $container.children(".message").remove();
     $container.hide();
@@ -171,6 +188,7 @@ var Notifier = L.Control.extend({
  * méthode permettant de générer un notifier rapidement.
  */
 
+
 exports.Notifier = Notifier;
 
 function createNotifier(options) {
@@ -179,7 +197,9 @@ function createNotifier(options) {
 
 ;
 
+}).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],3:[function(require,module,exports){
+(function (global){(function (){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -187,7 +207,14 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.createRequest = createRequest;
 exports.Request = void 0;
-var Request = L.Evented.extend({
+
+var _jquery = _interopRequireDefault((typeof window !== "undefined" ? window['jQuery'] : typeof global !== "undefined" ? global['jQuery'] : null));
+
+var _leaflet = _interopRequireDefault((typeof window !== "undefined" ? window['L'] : typeof global !== "undefined" ? global['L'] : null));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Request = _leaflet.default.Evented.extend({
   // On définit ici les options par défaut permettant
   // de générer la classe.
   options: {
@@ -207,7 +234,7 @@ var Request = L.Evented.extend({
   // Constructeur d'une nouvelle instance, permettant
   // ainsi de gérer les options de la classe.
   initialize: function (options) {
-    this.options = jQuery.extend(this.options, options);
+    this.options = _jquery.default.extend(this.options, options);
   },
   // Méthode permettant de provoquer l'envoi de la requête
   // et de prendre en compte de nouveaux paramètres si
@@ -216,7 +243,7 @@ var Request = L.Evented.extend({
     // On commence par intégrer toutes les options pour
     // configurer la requête à envoyer ...
     var opts = this.options;
-    if (typeof options == "object" && options != null) opts = jQuery.extend({}, this.options, options); // Puis on vérifie que les paramètres requis sont 
+    if (typeof options == "object" && options != null) opts = _jquery.default.extend({}, this.options, options); // Puis on vérifie que les paramètres requis sont 
     // présents pour provoquer l'envoi ...
 
     if (typeof opts.url != "string" || typeof opts.type != "string") throw new Exception("La configuration ne permet pas d'envoyer la requête."); // S'il y a des en-têtes à intégrer à la requête, on
@@ -224,7 +251,7 @@ var Request = L.Evented.extend({
 
     if (typeof opts.headers == "object" && opts.headers != null) {
       opts.beforeSend = function (xhr) {
-        jQuery.map(opts.headers, function (value, key) {
+        _jquery.default.map(opts.headers, function (value, key) {
           xhr.setRequestHeader(key, value);
         });
       };
@@ -238,7 +265,7 @@ var Request = L.Evented.extend({
         result = null; // On peut enfin emmettre la requête !
 
 
-    $.ajax(opts).done(function (data, status, jqXHR) {
+    _jquery.default.ajax(opts).done(function (data, status, jqXHR) {
       _this.fire("success", result = {
         "data": data,
         "status": status,
@@ -253,6 +280,7 @@ var Request = L.Evented.extend({
     }); // S'il s'agît d'un appel synchrone, on retourne
     // la réponse du web service directement ...
 
+
     if (!(typeof opts.async == "boolean" ? opts.async : true)) {
       return result;
     }
@@ -262,6 +290,7 @@ var Request = L.Evented.extend({
  * méthode permettant de générer une requête rapidement.
  */
 
+
 exports.Request = Request;
 
 function createRequest(options) {
@@ -270,7 +299,9 @@ function createRequest(options) {
 
 ;
 
+}).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],4:[function(require,module,exports){
+(function (global){(function (){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -281,7 +312,13 @@ exports.UrlHash = void 0;
 
 var _String = require("../../utils/String");
 
-var UrlHash = L.Class.extend({
+var _jquery = _interopRequireDefault((typeof window !== "undefined" ? window['jQuery'] : typeof global !== "undefined" ? global['jQuery'] : null));
+
+var _leaflet = _interopRequireDefault((typeof window !== "undefined" ? window['L'] : typeof global !== "undefined" ? global['L'] : null));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var UrlHash = _leaflet.default.Class.extend({
   // On définit ici les options par défaut permettant
   // de générer le composant. 
   options: {
@@ -305,7 +342,7 @@ var UrlHash = L.Class.extend({
       // les informations ...
 
 
-      jQuery.each(_this.options.onhashchange, function (i, func) {
+      _jquery.default.each(_this.options.onhashchange, function (i, func) {
         func.call(_this, {
           oldUrl: event.oldURL,
           newUrl: event.newURL,
@@ -318,13 +355,15 @@ var UrlHash = L.Class.extend({
   // des cartes 
   serialize: function () {
     var hashData = [];
-    jQuery.each(this.options.maps, function (i, map) {
-      hashData.push("{0}={1}/{2}/{3},layer={4}".format(map.options.id, map.getZoom(), map.getCenter().lat, map.getCenter().lng, jQuery.map(map._layers, function (l, i) {
+
+    _jquery.default.each(this.options.maps, function (i, map) {
+      hashData.push("{0}={1}/{2}/{3},layer={4}".format(map.options.id, map.getZoom(), map.getCenter().lat, map.getCenter().lng, _jquery.default.map(map._layers, function (l, i) {
         if (l.options._type == "base_layer") {
           return l;
         }
       })[0].options.id));
     });
+
     window.location.hash = hashData.join("&");
   },
   // Méthode permettant de parser une chaîne de caractères 
@@ -338,7 +377,7 @@ var UrlHash = L.Class.extend({
     // le traite de manière à en extraire la configuration
     // des éléments gérés par ce composant.
 
-    jQuery.each(str.split("&"), function (i, d) {
+    _jquery.default.each(str.split("&"), function (i, d) {
       // Si la donnée est de la forme (id)=(...) 
       // on peut envisager de la traiter, ...
       if (d.match(/([a-zA-Z0-9_-]+)=(.*)/)) {
@@ -366,6 +405,7 @@ var UrlHash = L.Class.extend({
           data[d] = null;
         }
     });
+
     return data;
   },
   // Méthode permettant d'ajouter une carte au gestionnaire 
@@ -397,12 +437,14 @@ var UrlHash = L.Class.extend({
  * méthode permettant de générer un gestionnaire de hashs rapidement.
  */
 
+
 exports.UrlHash = UrlHash;
 
 function createUrlHash() {
   return new UrlHash();
 }
 
+}).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"../../utils/String":10}],5:[function(require,module,exports){
 "use strict";
 
@@ -453,6 +495,7 @@ var _UrlHash = require("./UrlHash");
 var _Request = require("./Request");
 
 },{"./Notifier":2,"./Request":3,"./UrlHash":4}],6:[function(require,module,exports){
+(function (global){(function (){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -463,14 +506,20 @@ exports.Geojson = void 0;
 
 var _Request = require("../control/Request");
 
-var Geojson = L.GeoJSON.extend({
+var _jquery = _interopRequireDefault((typeof window !== "undefined" ? window['jQuery'] : typeof global !== "undefined" ? global['jQuery'] : null));
+
+var _leaflet = _interopRequireDefault((typeof window !== "undefined" ? window['L'] : typeof global !== "undefined" ? global['L'] : null));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Geojson = _leaflet.default.GeoJSON.extend({
   // Gestionnaire de requêtage des données
   // GeoJSON issues d'une source externe. 
   _request: new _Request.Request(),
   // Constructeur d'une nouvelle instance, permettant
   // ainsi de gérer les options de la classe.
   initialize: function (options) {
-    this.options = jQuery.extend(this.options, {
+    this.options = _jquery.default.extend(this.options, {
       // Fonctions par défaut pour traiter les données
       // récupérées auprès du webservice ...
       funcs: {
@@ -491,7 +540,7 @@ var Geojson = L.GeoJSON.extend({
     // On commence par intégrer toutes les options pour
     // configurer ensuite la requête à envoyer ...
     var opts = this.options;
-    if (typeof options == "object" && options != null) opts = jQuery.extend({}, this.options, options); // Puis on vérifie que les paramètres requis sont 
+    if (typeof options == "object" && options != null) opts = _jquery.default.extend({}, this.options, options); // Puis on vérifie que les paramètres requis sont 
     // présents pour provoquer l'envoi ...
 
     if (typeof opts.url != "string") throw new Exception("La configuration ne permet pas de générer le layer.");
@@ -503,9 +552,9 @@ var Geojson = L.GeoJSON.extend({
     // référence de traitement des événements associés au requêteur ...
 
 
-    if (this._request._events && "sending" in this._request._events && (pos = $.inArray(this.options.funcs.sending, this._request._events["sending"])) != -1) this._request._events["sending"].splice(pos, 1);
-    if (this._request._events && "fail" in this._request._events && (pos = $.inArray(this.options.funcs.fail, this._request._events["fail"])) != -1) this._request._events["fail"].splice(pos, 1);
-    if (this._request._events && "success" in this._request._events && (pos = $.inArray(this.options.funcs.success, this._request._events["success"])) != -1) this._request._events["success"].splice(pos, 1); // On regénère les fonctions associées pour récupérer 
+    if (this._request._events && "sending" in this._request._events && (pos = _jquery.default.inArray(this.options.funcs.sending, this._request._events["sending"])) != -1) this._request._events["sending"].splice(pos, 1);
+    if (this._request._events && "fail" in this._request._events && (pos = _jquery.default.inArray(this.options.funcs.fail, this._request._events["fail"])) != -1) this._request._events["fail"].splice(pos, 1);
+    if (this._request._events && "success" in this._request._events && (pos = _jquery.default.inArray(this.options.funcs.success, this._request._events["success"])) != -1) this._request._events["success"].splice(pos, 1); // On regénère les fonctions associées pour récupérer 
     // les données potentielles et les exploiter ...
 
     this._request.on("success", this.options.funcs.success, this);
@@ -523,6 +572,7 @@ var Geojson = L.GeoJSON.extend({
  * méthode permettant de générer un layer GeoJSON rapidement.
  */
 
+
 exports.Geojson = Geojson;
 
 function createGeojson(options) {
@@ -531,6 +581,7 @@ function createGeojson(options) {
 
 ;
 
+}).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"../control/Request":3}],7:[function(require,module,exports){
 "use strict";
 
@@ -553,6 +604,7 @@ Object.defineProperty(exports, "geojson", {
 var _Geojson = require("./Geojson");
 
 },{"./Geojson":6}],8:[function(require,module,exports){
+(function (global){(function (){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -565,11 +617,18 @@ var _fonctions = require("../../utils/fonctions");
 
 var _String = require("../../utils/String");
 
-var baseOptions = L.Map.prototype.options;
-var Map = L.Map.extend({
+var _jquery = _interopRequireDefault((typeof window !== "undefined" ? window['jQuery'] : typeof global !== "undefined" ? global['jQuery'] : null));
+
+var _leaflet = _interopRequireDefault((typeof window !== "undefined" ? window['L'] : typeof global !== "undefined" ? global['L'] : null));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var baseOptions = _leaflet.default.Map.prototype.options;
+
+var Map = _leaflet.default.Map.extend({
   // On définit ici les options par défaut permettant
   // de générer la carte Lascar basée sur la carte Leaflet.
-  options: jQuery.extend(baseOptions, {
+  options: _jquery.default.extend(baseOptions, {
     lascar: {
       // Identifiant du conteneur 
       id: "lmap",
@@ -603,7 +662,7 @@ var Map = L.Map.extend({
           "left": "0"
         },
         // Centre de la carte
-        center: new L.LatLng(46.53972, 2.43028),
+        center: new _leaflet.default.LatLng(46.53972, 2.43028),
         // Informations sur les layers à utiliser 
         _dataLayers: [{
           // Identifiant 
@@ -651,20 +710,21 @@ var Map = L.Map.extend({
         (0, _fonctions.checkId)("#{0}".format(arguments[0]));
         id = arguments[0];
       } else if (typeof arguments[0] == "object" && arguments[0] != null) {
-        lascarOpts = jQuery.extend(lascarOpts, arguments[0]);
+        lascarOpts = _jquery.default.extend(lascarOpts, arguments[0]);
       }
     } else if (arguments.length == 2) {
       (0, _fonctions.checkId)("#{0}".format(arguments[0]));
       id = arguments[0];
-      lascarOpts = jQuery.extend(lascarOpts, arguments[1]);
+      lascarOpts = _jquery.default.extend(lascarOpts, arguments[1]);
     }
 
     this.options.id = id; // On initialise la carte de base Leaflet ...
 
-    L.Map.prototype.initialize.call(this, id, jQuery.extend(this.options, lascarOpts)); // Avant de la personnaliser :
+    _leaflet.default.Map.prototype.initialize.call(this, id, _jquery.default.extend(this.options, lascarOpts)); // Avant de la personnaliser :
     // - On applique le style ...
 
-    if (typeof lascarOpts.style == "object" && lascarOpts.style != null) $("#{0}".format(id)).css(lascarOpts.style); // Si des layers sont définis, on génère le contrôle permettant
+
+    if (typeof lascarOpts.style == "object" && lascarOpts.style != null) (0, _jquery.default)("#{0}".format(id)).css(lascarOpts.style); // Si des layers sont définis, on génère le contrôle permettant
     // de naviguer rapidement de l'un à l'autre ...
 
     if (typeof lascarOpts._dataLayers == "object" && lascarOpts._dataLayers instanceof Array) {
@@ -673,28 +733,30 @@ var Map = L.Map.extend({
 
       this.options._layers = []; // Pour chaque layer disponible dans les options ...
 
-      jQuery.each(lascarOpts._dataLayers, function (i, dataLayer) {
+      _jquery.default.each(lascarOpts._dataLayers, function (i, dataLayer) {
         // On commence par générer le layer ...
         var layer = null;
 
-        _this.options._layers.push(layer = L.tileLayer(dataLayer.url, dataLayer));
+        _this.options._layers.push(layer = _leaflet.default.tileLayer(dataLayer.url, dataLayer));
 
         layer.options._type = "base_layer"; // et on les référence dans le contrôle ...
 
         layers[dataLayer.title] = layer;
       }); // On génère le contrôle des layers ...
 
-      (this.layersControl = L.control.layers(layers)).addTo(this); // et on ajoute le premier layer comme layer par défaut
+
+      (this.layersControl = _leaflet.default.control.layers(layers)).addTo(this); // et on ajoute le premier layer comme layer par défaut
+
 
       this.addLayer(layers[lascarOpts._dataLayers[0].title]);
     } // - On génère le contrôle d'attribution ...
 
 
-    if (typeof lascarOpts._attribution == "object" && lascarOpts._attribution != null) L.control.attribution(lascarOpts._attribution).addTo(this); // - On génère le contrôle de zoom ...
+    if (typeof lascarOpts._attribution == "object" && lascarOpts._attribution != null) _leaflet.default.control.attribution(lascarOpts._attribution).addTo(this); // - On génère le contrôle de zoom ...
 
-    if (typeof lascarOpts._zoom == "object" && lascarOpts._zoom != null) L.control.zoom(lascarOpts._zoom).addTo(this); // - On génère le contrôle d'échelle
+    if (typeof lascarOpts._zoom == "object" && lascarOpts._zoom != null) _leaflet.default.control.zoom(lascarOpts._zoom).addTo(this); // - On génère le contrôle d'échelle
 
-    if (typeof lascarOpts._scale == "object" && lascarOpts._scale != null) L.control.scale(lascarOpts._scale).addTo(this); // On invalide la taille pour forcer sa regénération ...
+    if (typeof lascarOpts._scale == "object" && lascarOpts._scale != null) _leaflet.default.control.scale(lascarOpts._scale).addTo(this); // On invalide la taille pour forcer sa regénération ...
     // + d'infos : https://github.com/Asymmetrik/ngx-leaflet/issues/104
 
     this.invalidateSize();
@@ -707,13 +769,14 @@ var Map = L.Map.extend({
       // Si le layer n'est pas défini ou qu'il n'est pas du 
       // bon type, on arrête la procédure de mise à jour 
       // du fond de carte ici ...
-      if (typeof layer != "object" && !(layer instanceof L.Layer)) return false; // On désactive les layers actuellement en place ...
+      if (typeof layer != "object" && !(layer instanceof _leaflet.default.Layer)) return false; // On désactive les layers actuellement en place ...
 
-      $.each(this._layers, function (id, layer) {
+      _jquery.default.each(this._layers, function (id, layer) {
         if (layer.options._type == "base_layer") {
           _this.removeLayer(layer);
         }
       }); // ... et on applique le layer ...
+
 
       this.addLayer(layer);
     }
@@ -737,12 +800,12 @@ var Map = L.Map.extend({
         // Si un niveau de zoom est défini, on l'exploite ...
         if (typeof data.zoom == "number" && data.zoom != this.getZoom()) this.setZoom(data.zoom); // Si un nouveau point est défini, on l'exploite ...
 
-        if (typeof data.lat == "number" && typeof data.lng == "number") this.setView(new L.LatLng(data.lat, data.lng)); // Si un fond de carte est souhaité, on cherche s'il existe et
+        if (typeof data.lat == "number" && typeof data.lng == "number") this.setView(new _leaflet.default.LatLng(data.lat, data.lng)); // Si un fond de carte est souhaité, on cherche s'il existe et
         // on l'applique sur la carte ...
 
         if (typeof data.layer == "string" && !(0, _String.strIsNullOrEmpty)(data.layer)) {}
 
-        changeLayer.call(this, $.grep(this.options._layers, function (l) {
+        changeLayer.call(this, _jquery.default.grep(this.options._layers, function (l) {
           return l.options.id == data.layer;
         })[0]);
       }
@@ -752,12 +815,14 @@ var Map = L.Map.extend({
  * méthode permettant de générer une carte rapidement.
  */
 
+
 exports.Map = Map;
 
 function createMap() {
   if (arguments.length == 1) return new Map(arguments[0]);else if (arguments.length == 2) return new Map(arguments[0], arguments[1]);else return new Map();
 }
 
+}).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"../../utils/String":10,"../../utils/fonctions":11}],9:[function(require,module,exports){
 "use strict";
 
@@ -780,12 +845,17 @@ Object.defineProperty(exports, "map", {
 var _Map = require("./Map");
 
 },{"./Map":8}],10:[function(require,module,exports){
+(function (global){(function (){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.strIsNullOrEmpty = exports.strFormat = void 0;
+
+var _jquery = _interopRequireDefault((typeof window !== "undefined" ? window['jQuery'] : typeof global !== "undefined" ? global['jQuery'] : null));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /* Méthode permettant d'intégrer des valeurs dans une 
  * chaîne de caractères à l'aide de son indice dans le 
@@ -802,9 +872,10 @@ var strFormat = function (str) {
   var args = function (args) {
     var _args = new Array();
 
-    jQuery.each(args, function (i, arg) {
+    _jquery.default.each(args, function (i, arg) {
       if (i > 0) _args.push(arg);
     });
+
     return _args;
   }(arguments); // On peut enfin remplacer les balises dans
   // la chaîne de caractères fournie ...
@@ -830,9 +901,10 @@ String.prototype.format = function () {
 
     _args.push(src);
 
-    jQuery.each(args, function (i, arg) {
+    _jquery.default.each(args, function (i, arg) {
       _args.push(arg);
     });
+
     return _args;
   }(this, arguments));
 };
@@ -860,7 +932,9 @@ String.isNullOrEmpty = function (str) {
   return strIsNullOrEmpty(str);
 };
 
+}).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],11:[function(require,module,exports){
+(function (global){(function (){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -868,7 +942,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.checkId = checkId;
 
+var _jquery = _interopRequireDefault((typeof window !== "undefined" ? window['jQuery'] : typeof global !== "undefined" ? global['jQuery'] : null));
+
 var _String = require("./String");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /* Méthode permettant de vérifier qu'un identifiant
  * est bien un identifiant DOM valide sans quoi on
@@ -881,11 +959,12 @@ function checkId(id) {
   if ((0, _String.strIsNullOrEmpty)(id)) throw new Error("La chaîne n'est pas un identifiant valide."); // On vérifie ensuite que l'identifiant existe
   // bien dans le DOM sans quoi on retourne une erreur ... ...
 
-  if (jQuery(id).length != 1) throw new Error("L'identifiant n'existe pas dans le DOM.");
+  if ((0, _jquery.default)(id).length != 1) throw new Error("L'identifiant n'existe pas dans le DOM.");
 }
 
 ;
 
+}).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./String":10}],12:[function(require,module,exports){
 "use strict";
 

@@ -1,3 +1,5 @@
+import jQuery from 'jquery';
+
 /* Méthode permettant d'intégrer des valeurs dans une 
  * chaîne de caractères à l'aide de son indice dans le 
  * tableau des arguments.

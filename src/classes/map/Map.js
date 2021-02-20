@@ -1,5 +1,7 @@
 import {checkId} from '../../utils/fonctions';
 import { strIsNullOrEmpty } from '../../utils/String';
+import jQuery from 'jquery';
+import L from 'leaflet';
 
 var baseOptions = L.Map.prototype.options;
 export var Map = L.Map.extend({
@@ -105,7 +107,7 @@ export var Map = L.Map.extend({
         // Avant de la personnaliser :
         // - On applique le style ...
         if(typeof(lascarOpts.style) == "object" && lascarOpts.style != null) 
-            $("#{0}".format(id)).css(lascarOpts.style);
+            jQuery("#{0}".format(id)).css(lascarOpts.style);
         // Si des layers sont définis, on génère le contrôle permettant
         // de naviguer rapidement de l'un à l'autre ...
         if(typeof(lascarOpts._dataLayers) == "object" && lascarOpts._dataLayers instanceof Array) {
@@ -149,7 +151,7 @@ export var Map = L.Map.extend({
             if(typeof(layer) != "object" && !(layer instanceof L.Layer)) return false;
 
             // On désactive les layers actuellement en place ...
-            $.each(this._layers, function(id, layer) { if(layer.options._type == "base_layer") { _this.removeLayer(layer); } });
+            jQuery.each(this._layers, function(id, layer) { if(layer.options._type == "base_layer") { _this.removeLayer(layer); } });
             // ... et on applique le layer ...
             this.addLayer(layer);
         };
@@ -177,7 +179,7 @@ export var Map = L.Map.extend({
             // Si un fond de carte est souhaité, on cherche s'il existe et
             // on l'applique sur la carte ...
             if(typeof(data.layer) == "string" && !strIsNullOrEmpty(data.layer)) {}
-                changeLayer.call(this, $.grep(this.options._layers, function(l) { return l.options.id == data.layer; })[0]);
+                changeLayer.call(this, jQuery.grep(this.options._layers, function(l) { return l.options.id == data.layer; })[0]);
         }
     }
 

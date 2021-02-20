@@ -5,7 +5,7 @@
   "main": "dist/lascar.js",
   "scripts": {
     "clean": "rm -f ./dist/lascar.*",
-    "browserify": "browserify ./src/Lascar.js -p esmify -o ./dist/lascar.src.js",
+    "browserify": "browserify ./src/Lascar.js -p esmify -t [ browserify-shim --global ] -o ./dist/lascar.src.js",
     "uglifyjs": "uglifyjs ./dist/lascar.src.js -c --ie8 -o ./dist/lascar.js",
     "uglifycss": "uglifycss ./src/lascar.css > ./dist/lascar.min.css",
     "copy": "cp ./dist/lascar.js ./www/assets/js/lascar.js & cp ./dist/lascar.min.css ./www/assets/css/lascar.min.css",
@@ -23,8 +23,16 @@
   "homepage": "https://github.com/lbrulebois/lascarjs#readme",
   "dependencies": {
     "browser-resolve": "^2.0.0",
+    "browserify": "^17.0.0",
+    "browserify-shim": "^3.8.14",
     "esmify": "^2.1.1",
+    "jquery": "^3.5.1",
+    "leaflet": "^1.7.1",
     "uglify-js": "^3.12.8",
     "uglifycss": "0.0.29"
+  },
+  "browserify-shim": {
+    "jquery": "global:jQuery",
+    "leaflet": "global:L"
   }
 }

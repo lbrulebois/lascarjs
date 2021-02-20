@@ -1,3 +1,6 @@
+import jQuery from 'jquery';
+import L from 'leaflet';
+
 export var Request = L.Evented.extend({
 
     // On définit ici les options par défaut permettant
@@ -54,7 +57,7 @@ export var Request = L.Evented.extend({
         var _this = this,
             result = null;
         // On peut enfin emmettre la requête !
-        $.ajax(opts)
+        jQuery.ajax(opts)
             .done(function (data, status, jqXHR) {
                 _this.fire("success", (result = {
                     "data": data,

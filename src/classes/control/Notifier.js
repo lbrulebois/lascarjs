@@ -1,3 +1,6 @@
+import jQuery from 'jquery';
+import L from 'leaflet';
+
 var baseOptions = L.Control.prototype.options;
 export var Notifier = L.Control.extend({
 
@@ -9,7 +12,7 @@ export var Notifier = L.Control.extend({
         defaultMsg: {
             message: "Un événement est survenu ...", // Message par défaut
             showIcon: true, // Booléen permettant d'afficher l'icône
-            icon: $("<span>", { // Icône à intégrer par défaut
+            icon: jQuery("<span>", { // Icône à intégrer par défaut
                 class: "alert", html: " ! ",
                 css: { "color": "red", "font-weight": "bold" }
             })[0]
@@ -47,7 +50,7 @@ export var Notifier = L.Control.extend({
     // et intégrer un nouveau message ...
     show: function (data) {
         function integrateMessage(message) {
-            var $container = $(this._container);
+            var $container = jQuery(this._container);
             $container.parent().addClass("lascar-notifier-container");
             // S'il y a plus de messages que permis, on supprime
             // le plus ancien pour permettre l'intégration du
@@ -64,8 +67,8 @@ export var Notifier = L.Control.extend({
 
             // On peut dorénavant intégrer le nouveau message
             var $ctMessage = $("<div>", { class: "message" });
-            $("<span>", { class: "notifier-icon", html: $(message.icon).clone() }).appendTo($ctMessage);
-            $("<span>", { class: "notifier-msg", html: message.message }).appendTo($ctMessage);
+            jQuery("<span>", { class: "notifier-icon", html: jQuery(message.icon).clone() }).appendTo($ctMessage);
+            jQuery("<span>", { class: "notifier-msg", html: message.message }).appendTo($ctMessage);
             $ctMessage.appendTo($container);
         };
 
@@ -86,14 +89,14 @@ export var Notifier = L.Control.extend({
         }
 
         // On affiche le composant ...
-        $(this._container).show();
+        jQuery(this._container).show();
         return this;
     },
 
     // Méthode permettant de masquer le composant
     // et purger les messages par la même occasion ...
     hide: function () {
-        var $container = $(this._container);
+        var $container = jQuery(this._container);
         $container.parent().removeClass("lascar-notifier-container");
         $container.children(".message").remove();
         $container.hide();
