@@ -56,4 +56,7 @@ if(!isset($srv)) $srv = array();
 if(!array_key_exists("viewer", $srv)) $srv["viewer"] = array();
 $srv["viewer"]["error"] = new ErrorViewerSrv($config["srv"]["viewer"]["error"]);
 $srv["viewer"]["error"]->setHtmlViewer($srv["viewer"]["html"]);
+
+// On associe le service des pages d'erreur aux services principaux ...
 $srv["viewer"]["html"]->setErrorViewer($srv["viewer"]["error"]);
+$srv["viewer"]["md"]->setErrorViewer($srv["viewer"]["error"]);

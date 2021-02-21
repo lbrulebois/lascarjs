@@ -2,6 +2,10 @@ Options +FollowSymlinks
 RewriteEngine On
 RewriteBase /
 
+# / vers la page d'accueil
+RewriteRule ^$ index.php?p=home.md [L]
+
+# Pages d'erreurs
 RewriteRule ^error/(.+)$ index.php?p=error/$1 [L,QSA]
 
 # S'il ne s'agît pas d'un dossier ou d'un fichier

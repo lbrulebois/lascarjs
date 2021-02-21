@@ -1,7 +1,30 @@
 {
     "context": {
         "title": "lascarjs",
-        "version": "0.3.0"
+        "subtitle": "Votre carte Leaflet en une ligne de code !",
+        "version": "0.3.0",
+        "navs": [
+            {
+                "code": "home.md",
+                "href": "/home.md",
+                "label": "Accueil"
+            },
+            {
+                "code": "download.md",
+                "href": "/download.md",
+                "label": "Télécharger"
+            },
+            {
+                "code": "documentation.md",
+                "href": "/documentation.md",
+                "label": "Documentation"
+            },
+            {
+                "code": "github",
+                "href": "https://github.com/lbrulebois/lascarjs",
+                "label": "GitHub"
+            }
+        ]
     },
     "srv": {
         "viewer": {
@@ -11,6 +34,12 @@
             },
             "error": {
                 "container": "core/pages/error/"
+            },
+            "md": {
+                "headers": [ "header", "navbar" ],
+                "footers": [ "footer_nav", "footer" ],
+                "defaultPage": "home.md",
+                "container": "wiki/"
             }
         }
     }

@@ -5,6 +5,7 @@
  */
 ?>
     <script src="https://unpkg.com/jquery@3.5.1/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/assets/js/prism-1.20.0.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script type="text/javascript" src="/assets/js/lascar.js"></script>
 </body>

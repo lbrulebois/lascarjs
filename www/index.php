@@ -13,8 +13,9 @@ try {
     // et à partir de ce code, on détermine l'afficheur
     // à partir de la potentielle extension ...
     if($page != null) $viewer = pathinfo($page, PATHINFO_EXTENSION);
+    if(!isset($viewer) || $viewer == "") $viewer = "html";
     // On charge ensuite la page souhaitée ...
-    $srv["viewer"]["html"]->Load($page, array_key_exists("context", $config) ? $config["context"] : null);
+    $srv["viewer"][$viewer]->Load($page, array_key_exists("context", $config) ? $config["context"] : null);
 } 
 // En cas d'erreur, on affiche une page expliquant la 
 // nature du problème ...
