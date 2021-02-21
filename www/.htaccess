@@ -2,6 +2,8 @@ Options +FollowSymlinks
 RewriteEngine On
 RewriteBase /
 
+RewriteRule ^error/(.+)$ index.php?p=error/$1 [L,QSA]
+
 # S'il ne s'agît pas d'un dossier ou d'un fichier
 # existant, ou d'une ressource dans le dossier /assets/
 # alors on provoque une réécriture ...

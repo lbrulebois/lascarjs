@@ -23,7 +23,7 @@
     <meta name="author" content="Brulebois Loïc, loic.brulebois@outlook.com" />
     
 
-    <title><?php echo (isset($title) ? "$title | " : ""). $context["title"]; ?></title>
+    <title><?php echo (isset($params["title"]) ? "$params[title] | " : ""). $context["title"]; ?></title>
 </head>
 
 <body <?php echo isset($params["bodyClass"]) ? "class=\"$params[bodyClass]\"" : ""; ?>>

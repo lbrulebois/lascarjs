@@ -1,12 +1,12 @@
 <?php
-/** core/pages/error/404.php 
- * Page HTTP:NOT_FOUND
+/** core/pages/error/403.php 
+ * Page HTTP:FORBIDDEN
  * Page d'erreur permettant d'indiquer à l'utilisateur que
- * la page souhaitée n'existe pas ou plus.
+ * ses accès ne lui permettent pas d'accéder à la page souhaitée.
  */
 
 $params = array(
-    "title" => "Page introuvable ...",
+    "title" => "Accès refusé ...",
     "htmlClass" => "fullscreen",
     "bodyClass" => "flex"
 );  
@@ -16,10 +16,10 @@ require_once "core/utils/header.php";
 ?>
 
 <div class="container error">
-    <span class="pic">&#128533;</span>
-    <h1>Désolé</h1>
-    <pre>HTTP/404 - Page introuvable</pre>
-    <p>La page que vous souhaitez consulter n'existe pas ou plus.<br/>
+    <span class="pic">&#129320;</span>
+    <h1>Mmmmmm ...</h1>
+    <pre>HTTP/403 - Accès refusé</pre>
+    <p>Vous ne disposez pas ou plus des accès nécessaire pour cette page.<br/>
     Veuillez réitérer ultérieurement votre demande.<br/>
     Si le problème persiste, signalez-nous l'anomalie en <a href="https://github.com/lbrulebois/lascarjs/issues">cliquant ici</a>.</p>
     <p><a href="/">&larr; Retourner à l'accueil</a></p>

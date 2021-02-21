@@ -8,6 +8,9 @@ class ErrorViewerSrv implements IViewerSrv {
     /** Code de la page "HTTP/404 : Not found" */
     const NOT_FOUND = "404";
 
+    /** Code de la page "HTTP/403 : Forbidden" */
+    const FORBIDDEN = "403";
+
     /** Constructeur permettant d'initialiser les paramètres
      * nécessaires et issus de la configuration.
      */
