@@ -15,7 +15,7 @@
                 "label": "Télécharger"
             },
             {
-                "code": "documentation.md",
+                "code": "doc",
                 "href": "/documentation.md",
                 "label": "Documentation"
             },

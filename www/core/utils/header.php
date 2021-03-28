@@ -14,6 +14,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- Styles -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="/assets/css/prism-1.20.0/prism.min.css?v=<?php echo $context["version"]; ?>" />
     <link rel="stylesheet" href="/assets/css/lascarweb.css?v=<?php echo $context["version"]; ?>" />
 

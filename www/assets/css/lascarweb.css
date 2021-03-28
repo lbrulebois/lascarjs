@@ -88,3 +88,31 @@ body > .root > footer {
 
 .root h2 { font-weight: normal; font-size: 1.65rem; }
 .root h3 { font-weight: bold; font-size: 1.3em; border-bottom-style: dotted; }
+
+/** Séparateur dans le corps de la page. */
+.root hr { border: none; border-bottom: 1px solid #999999; }
+
+/** Tableau dans le corps de la page. */
+.root table { 
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #cccccc;
+}
+
+.root table td, .root table th { 
+    border: 1px solid #cccccc; 
+    padding: 0.25rem 0.5rem; 
+}
+.root table > thead { background-color: #cccccc; color: #3f3b38; }
+.root table > tbody { background-color: #ffffff; }
+
+/** Simulateur d'une fenêtre d'un navigateur. */
+.sample-browser {
+    width: 100%; max-width: 100%;
+    background-color: #cccccc;
+    border-radius: 0.5rem;
+    min-height: 320px;
+    padding: 1rem 0.5rem 0.5rem;
+}
+
+.sample-browser > .map { position: relative !important; }
